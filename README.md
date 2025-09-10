@@ -120,12 +120,13 @@ python3 --version
 cp .env.example .env
 # Set OPENAI_API_KEY or ANTHROPIC_API_KEY
 
-# Run evaluation
-./run.sh --folder scenarios/binance_guardrails
+# Run evaluation (defaults to binance_guardrails scenario)
+./run.sh
 
 # Run with specific model
-./run.sh --folder scenarios/binance_guardrails --model o3
-./run.sh --folder scenarios/binance_guardrails --model gpt-5
+./run.sh --model o3
+./run.sh --model gpt-5
+./run.sh --model claude-sonnet-4-20250514
 
 # Alternative: Direct Docker Compose  
 docker-compose up

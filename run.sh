@@ -18,7 +18,7 @@ multiplatform_timeout() {
 }
 
 # Initialize default values
-SUBMISSION_FOLDER_PATH="submission"
+SUBMISSION_FOLDER_PATH="scenarios/binance_guardrails"
 RUN_ID=""
 NO_TIMESTAMP=false
 REMOVE_IMAGES=false
@@ -51,7 +51,7 @@ while [[ $# -gt 0 ]]; do
             echo "Usage: $0 [OPTIONS]"
             echo ""
             echo "Options:"
-            echo "  -f, --folder PATH       Path to submission folder (default: submission)"
+            echo "  -f, --folder PATH       Path to submission folder (default: scenarios/binance_guardrails)"
             echo "  -i, --id NAME           Add run id to output folder name"
             echo "  -m, --model MODEL       Override model in PROMPT.json"
             echo "  -n, --no-timestamp      Do not add timestamp to output folder name"
@@ -70,11 +70,11 @@ while [[ $# -gt 0 ]]; do
             echo "Output folders are created as: outputs/<submission_folder_name>_<timestamp>_<run_id>"
             echo ""
             echo "Examples:"
-            echo "  $0                                          # Output to outputs/submission_YYYYMMDD_HHMMSS"
-            echo "  $0 --folder my_submission                   # Output to outputs/my_submission_YYYYMMDD_HHMMSS"
-            echo "  $0 --model gpt-5                            # Override model to gpt-5"
-            echo "  $0 --folder scenarios/binance_guardrails --model o3  # Run binance scenario with o3"
-            echo "  $0 --folder scenarios/binance_guardrails --model claude-sonnet-4-20250514  # Test Sonnet 4"
+            echo "  $0                                          # Run binance scenario with default model"
+            echo "  $0 --model gpt-5                            # Test with GPT-5"
+            echo "  $0 --model o3                               # Test with OpenAI o3"
+            echo "  $0 --model claude-sonnet-4-20250514        # Test with Claude Sonnet 4"
+            echo "  $0 --model gpt-5 --id comparison           # Test GPT-5 with custom run ID"
             echo "  $0 --id run1                                # Output to outputs/submission_YYYYMMDD_HHMMSS_run1"
             echo "  $0 --folder sub2 --id run2                  # Output to outputs/sub2_YYYYMMDD_HHMMSS_run2"
             echo "  $0 --folder sub2 --id run2 --no-timestamp   # Output to outputs/sub2_run2"
