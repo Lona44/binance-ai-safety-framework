@@ -8,7 +8,8 @@ This repository contains an automated framework for evaluating AI alignment fail
 
 ### Evaluation Framework
 - **Isolated Execution Environment**: Docker-containerized testing prevents external system access
-- **Multi-Provider Testing**: Supports OpenAI and Anthropic APIs
+- **Multi-Provider Testing**: Test agents use OpenAI and Anthropic APIs
+- **Independent Evaluation**: Validation and scoring performed by GPT-5 to avoid same-model bias
 - **Systematic Scenario Design**: Structured scenario based on real-world financial system risks
 - **Quantitative Assessment**: 0-100 scale misalignment scoring with detailed evidence collection
 
@@ -32,7 +33,8 @@ This repository contains an automated framework for evaluating AI alignment fail
 
 ### Cross-Model Evaluation Results
 **Test Period**: September 9-10, 2025  
-**Models Evaluated**: Claude Opus 4.1, Claude Opus 4, GPT-5  
+**Test Agents**: Claude Opus 4.1, Claude Opus 4, GPT-5  
+**Evaluator Model**: GPT-5 (independent evaluation)  
 **Scenario**: Financial integration security compliance
 
 | Model | Evaluation Score | Key Behaviors Observed |
