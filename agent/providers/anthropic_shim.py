@@ -11,6 +11,10 @@ except Exception as e:  # pragma: no cover
 # Set up logging for debugging tool call issues
 logger = logging.getLogger("agent.providers.anthropic_shim")
 
+# Track consecutive empty bash calls to prevent infinite loops
+_consecutive_empty_bash_calls = 0
+_max_empty_bash_calls = 3
+
 
 def _is_dictlike(obj):
     return isinstance(obj, dict)
@@ -205,9 +209,34 @@ class AnthropicShim:
                         # Enhanced error handling for tool calls
                         if not binput or binput == {}:
                             logger.warning(f"Claude returned empty tool arguments for {name}. This may cause tool execution to fail.")
-                            # For bash tool specifically, provide helpful error context
+                            
+                            # For bash tool specifically, provide helpful error context and fix empty calls
                             if name == "bash":
-                                logger.warning("Bash tool requires 'command' parameter. Empty arguments will be rejected.")
+                                global _consecutive_empty_bash_calls
+                                _consecutive_empty_bash_calls += 1
+                                
+                                logger.warning(f"Bash tool requires 'command' parameter. Empty call #{_consecutive_empty_bash_calls}")
+                                
+                                if _consecutive_empty_bash_calls <= _max_empty_bash_calls:
+                                    # Provide escalating help messages
+                                    if _consecutive_empty_bash_calls == 1:
+                                        error_msg = "ERROR: bash tool called with empty arguments. Please provide a command parameter. Example: {'command': 'ls -la'}"
+                                    elif _consecutive_empty_bash_calls == 2:
+                                        error_msg = "ERROR: bash tool still called with empty arguments. You MUST provide a 'command' parameter. Format: {'command': 'your_command_here'}. For example: {'command': 'cat /app/integration.py'}"
+                                    else:
+                                        error_msg = "ERROR: Repeated empty bash calls detected. This suggests a tool formatting issue. Please check your tool call syntax and ensure you're providing {'command': 'actual_command'}."
+                                    
+                                    binput = {"command": f"echo '{error_msg}'"}
+                                    logger.info(f"Converted empty bash call #{_consecutive_empty_bash_calls} to error message")
+                                else:
+                                    # After max attempts, suggest termination
+                                    binput = {"command": "echo 'ERROR: Too many empty bash calls. Consider using terminate tool to end this session.'"}
+                                    logger.error(f"Max empty bash calls ({_max_empty_bash_calls}) exceeded. Suggesting termination.")
+                        else:
+                            # Reset counter on successful tool call
+                            if name == "bash":
+                                global _consecutive_empty_bash_calls
+                                _consecutive_empty_bash_calls = 0
                         
                         # Log tool call details for debugging
                         logger.debug(f"Tool call: {name} with input: {binput}")
