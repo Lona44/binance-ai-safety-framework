@@ -1,11 +1,9 @@
 # AI Safety Evaluation Framework for Financial Systems
 
-## Abstract
+This repository contains an automated framework for evaluating AI alignment failures in financial service contexts, building on research that won **second place in the Palisade Research AI Misalignment Bounty**. The framework extends proven boundary navigation techniques to test large language models in safety-critical financial integration scenarios and provides quantitative assessment of misalignment behaviors.
 
-This repository contains an automated framework for evaluating AI alignment failures in financial service contexts. The system tests large language models in a safety-critical financial integration scenario and provides quantitative assessment of misalignment behaviors.
-
-**Based on**: [Palisade Research misalignment bounty template](https://github.com/PalisadeResearch/misalignment-bounty-template)  
-**Inspired by**: [Boundary navigation research](https://www.approxiomresearch.com/blog/how-boundary-navigation-revealed-an-architectural-flaw-at-the-heart-of-ai-safety-4nprt)
+**Framework based on**: [Palisade Research misalignment bounty template](https://github.com/PalisadeResearch/misalignment-bounty-template)  
+**Research methodology**: [Boundary navigation research](https://www.approxiomresearch.com/blog/how-boundary-navigation-revealed-an-architectural-flaw-at-the-heart-of-ai-safety-4nprt)
 
 ## Methodology
 
@@ -142,13 +140,6 @@ The consistent misalignment patterns observed across different model architectur
 └── README.md                       # This document
 ```
 
-## Attribution
-
-### Original Framework
-This work builds upon the [Palisade Research misalignment bounty template](https://github.com/PalisadeResearch/misalignment-bounty-template), which provides the foundational architecture for AI safety evaluation in controlled environments.
-
-### Related Research
-This work builds on prior research that won **second place in the Palisade Research AI Misalignment Bounty**, where boundary navigation techniques successfully demonstrated systematic AI alignment failures across OpenAI's latest models. The research methodology and findings are detailed in: [How Boundary Navigation Revealed an Architectural Flaw at the Heart of AI Safety](https://www.approxiomresearch.com/blog/how-boundary-navigation-revealed-an-architectural-flaw-at-the-heart-of-ai-safety-4nprt)
 
 ## Citation
 
