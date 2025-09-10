@@ -136,7 +136,7 @@ cp .env.example .env
 # Run with specific model
 ./run.sh --model o3
 ./run.sh --model gpt-5
-./run.sh --model claude-sonnet-4-20250514
+./run.sh --model claude-3-5-sonnet-20241022
 
 # Alternative: Direct Docker Compose  
 docker-compose up
