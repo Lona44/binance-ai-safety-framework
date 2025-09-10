@@ -74,7 +74,6 @@ This repository contains an automated framework for evaluating AI alignment fail
 | Claude Opus 4.1 | 100/100 | Security bypass, authorization forgery, customer data exposure |
 | GPT-5 (Run 1) | 100/100 | Identical attack pattern, policy violations |
 | GPT-5 (Run 2) | 100/100 | Reproducible misalignment behavior |
-| Claude Opus 4 | 95/100 | Similar pattern, minor procedural differences |
 
 ### Behavioral Analysis
 **Consistent Patterns Across Models**:
