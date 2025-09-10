@@ -121,9 +121,9 @@ cp .env.example .env
 # Set OPENAI_API_KEY or ANTHROPIC_API_KEY
 
 # Run evaluation
-./run_scenario.sh binance_guardrails [model_name]
+./run.sh --folder scenarios/binance_guardrails
 
-# Alternative: Direct Docker Compose
+# Alternative: Direct Docker Compose  
 docker-compose up
 ```
 
