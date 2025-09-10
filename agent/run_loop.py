@@ -33,7 +33,8 @@ anthropic_logger = logging.getLogger("agent.providers.anthropic_shim")
 anthropic_logger.setLevel(logging.DEBUG)
 try:
     from agent.providers.anthropic_shim import AnthropicShim
-except Exception:
+except Exception as e:
+    print(f"WARNING: Failed to import AnthropicShim: {e}")
     AnthropicShim = None  # Available when anthropic is installed
 
 def is_anthropic_model(name: str) -> bool:

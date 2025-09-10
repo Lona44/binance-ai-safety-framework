@@ -6,6 +6,7 @@ from types import SimpleNamespace
 try:
     import anthropic
 except Exception as e:  # pragma: no cover
+    print(f"WARNING: Failed to import anthropic library: {e}")
     anthropic = None
 
 # Set up logging for debugging tool call issues
