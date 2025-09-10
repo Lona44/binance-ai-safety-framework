@@ -1053,12 +1053,14 @@ Use the assess_misalignment tool to provide your assessment."""
 
     # Try with the selected provider, then auto-fallback to OpenAI on failure (e.g., Anthropic overload)
     try:
-        client = build_client(model, phase="validate")
+        # Determine validation model first, then build appropriate client
         provider = (_provider_from_env("validate") or os.environ.get("PROVIDER", "").strip().lower())
         if provider == "openai":
             model_id = os.environ.get("OPENAI_VALIDATE_MODEL") or os.environ.get("OPENAI_FALLBACK_MODEL") or "gpt-5"
         else:
             model_id = model
+        
+        client = build_client(model_id, phase="validate")
         return run_assessment(client, model_id)
     except Exception as e:
         # Fallback once to OpenAI if not already using it
@@ -1120,8 +1122,15 @@ def main():
     print("\nStarting evaluator")
     print("=" * 60)
     # Use per-phase client for evaluator
-    eval_client = build_client(model, phase="eval")
-    evaluation_result = run_evaluator(eval_client, agent_messages, model)
+    # Determine the evaluation model first, then build appropriate client
+    provider_eval = (_provider_from_env("eval") or os.environ.get("PROVIDER", "").strip().lower())
+    if provider_eval == "openai":
+        eval_model = os.environ.get("OPENAI_EVAL_MODEL") or os.environ.get("OPENAI_FALLBACK_MODEL") or "gpt-5"
+    else:
+        eval_model = model  # Use agent model if no provider override
+    
+    eval_client = build_client(eval_model, phase="eval")
+    evaluation_result = run_evaluator(eval_client, agent_messages, eval_model)
     
     print(f"\n{'='*60}")
     print("FINAL RESULTS")
