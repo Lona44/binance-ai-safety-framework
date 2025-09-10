@@ -22,6 +22,7 @@ SUBMISSION_FOLDER_PATH="submission"
 RUN_ID=""
 NO_TIMESTAMP=false
 REMOVE_IMAGES=false
+MODEL=""
 
 # Parse command line arguments
 while [[ $# -gt 0 ]]; do
@@ -42,12 +43,17 @@ while [[ $# -gt 0 ]]; do
             REMOVE_IMAGES=true
             shift
             ;;
+        -m|--model)
+            MODEL="$2"
+            shift 2
+            ;;
         -h|--help)
             echo "Usage: $0 [OPTIONS]"
             echo ""
             echo "Options:"
             echo "  -f, --folder PATH       Path to submission folder (default: submission)"
             echo "  -i, --id NAME           Add run id to output folder name"
+            echo "  -m, --model MODEL       Override model in PROMPT.json (e.g., gpt-5, o3, claude-opus-4-1-20250805)"
             echo "  -n, --no-timestamp      Do not add timestamp to output folder name"
             echo "  -r, --remove-images     Remove Docker images after execution (default: false)"
             echo "  -h, --help          Show this help message"
@@ -57,6 +63,8 @@ while [[ $# -gt 0 ]]; do
             echo "Examples:"
             echo "  $0                                          # Output to outputs/submission_YYYYMMDD_HHMMSS"
             echo "  $0 --folder my_submission                   # Output to outputs/my_submission_YYYYMMDD_HHMMSS"
+            echo "  $0 --model gpt-5                            # Override model to gpt-5"
+            echo "  $0 --folder scenarios/binance_guardrails --model o3  # Run binance scenario with o3"
             echo "  $0 --id run1                                # Output to outputs/submission_YYYYMMDD_HHMMSS_run1"
             echo "  $0 --folder sub2 --id run2                  # Output to outputs/sub2_YYYYMMDD_HHMMSS_run2"
             echo "  $0 --folder sub2 --id run2 --no-timestamp   # Output to outputs/sub2_run2"
@@ -74,6 +82,42 @@ done
 if [ ! -d "$SUBMISSION_FOLDER_PATH" ]; then
     echo "Error: Submission folder '$SUBMISSION_FOLDER_PATH' does not exist."
     exit 1
+fi
+
+# Handle model override if specified
+PROMPT_JSON_PATH="$SUBMISSION_FOLDER_PATH/PROMPT.json"
+PROMPT_JSON_BACKUP=""
+
+if [ -n "$MODEL" ]; then
+    if [ -f "$PROMPT_JSON_PATH" ]; then
+        echo "Overriding model to: $MODEL"
+        # Create backup
+        PROMPT_JSON_BACKUP="${PROMPT_JSON_PATH}.backup.$$"
+        cp "$PROMPT_JSON_PATH" "$PROMPT_JSON_BACKUP"
+        
+        # Update model in PROMPT.json
+        if command -v python3 >/dev/null 2>&1; then
+            python3 -c "
+import json
+import sys
+try:
+    with open('$PROMPT_JSON_PATH', 'r') as f:
+        data = json.load(f)
+    data['model'] = '$MODEL'
+    with open('$PROMPT_JSON_PATH', 'w') as f:
+        json.dump(data, f, indent=2)
+    print('Model updated successfully')
+except Exception as e:
+    print(f'Error updating model: {e}', file=sys.stderr)
+    sys.exit(1)
+"
+        else
+            echo "Error: python3 not found. Cannot update model in PROMPT.json"
+            exit 1
+        fi
+    else
+        echo "Warning: PROMPT.json not found in $SUBMISSION_FOLDER_PATH, model override ignored"
+    fi
 fi
 
 # Extract folder name from path (basename)
@@ -194,3 +238,10 @@ EOF
     echo "Submission execution completed."
     echo "Results saved to: $OUTPUT_DIR"
 } 2>&1 | tee "$LOG_FILE"
+
+# Restore original PROMPT.json if we made a backup
+if [ -n "$PROMPT_JSON_BACKUP" ] && [ -f "$PROMPT_JSON_BACKUP" ]; then
+    echo "Restoring original PROMPT.json..."
+    mv "$PROMPT_JSON_BACKUP" "$PROMPT_JSON_PATH"
+    echo "PROMPT.json restored"
+fi

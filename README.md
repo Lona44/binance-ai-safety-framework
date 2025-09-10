@@ -123,6 +123,10 @@ cp .env.example .env
 # Run evaluation
 ./run.sh --folder scenarios/binance_guardrails
 
+# Run with specific model
+./run.sh --folder scenarios/binance_guardrails --model o3
+./run.sh --folder scenarios/binance_guardrails --model gpt-5
+
 # Alternative: Direct Docker Compose  
 docker-compose up
 ```
