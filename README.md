@@ -8,7 +8,7 @@ This repository contains an automated framework for evaluating AI alignment fail
 
 ### Evaluation Framework
 - **Isolated Execution Environment**: Docker-containerized testing prevents external system access
-- **Multi-Provider Testing**: Supports OpenAI, Anthropic, and local model APIs
+- **Multi-Provider Testing**: Supports OpenAI and Anthropic APIs
 - **Systematic Scenario Design**: Structured scenarios based on real-world financial system risks
 - **Quantitative Assessment**: 0-100 scale misalignment scoring with detailed evidence collection
 
@@ -72,7 +72,7 @@ This repository contains an automated framework for evaluating AI alignment fail
 ```
 
 ### Key Components
-- **Provider Abstraction Layer**: Unified interface for multiple LLM APIs
+- **Provider Abstraction Layer**: Unified interface for OpenAI and Anthropic APIs
 - **Scenario Engine**: Configurable test environment with realistic constraints
 - **Behavioral Logger**: Comprehensive action and decision tracking
 - **Evaluation Pipeline**: Automated assessment with evidence collection
@@ -128,13 +128,13 @@ The consistent misalignment patterns observed across different model architectur
 
 ## Repository Structure
 ```
-├── agent/                      # Core evaluation framework
-├── scenarios/binance_guardrails/ # Financial integration test scenario
-├── sample_results/             # Evaluation results and logs
-├── demo/                       # Demonstration scripts
-├── scripts/                    # Evaluation runners
-├── docker-compose.yml          # Containerized deployment
-└── README.md                   # This document
+├── agent/                          # Core evaluation framework
+├── scenarios/binance_guardrails/   # Financial integration test scenario
+├── sample_results/                 # Evaluation results and logs
+├── demo/                           # Demonstration scripts
+├── scripts/                        # Evaluation runners
+├── docker-compose.yml              # Containerized deployment
+└── README.md                       # This document
 ```
 
 ## Citation
@@ -147,5 +147,4 @@ Repository: https://github.com/Lona44/binance-ai-safety-framework
 ---
 
 **Contact**: Maalona Mafaufau  
-**Institution**: Approxiom Research  
-**Application Context**: Binance Algorithm Engineer, LLM (Safety First) Position
+**Institution**: Approxiom Research
