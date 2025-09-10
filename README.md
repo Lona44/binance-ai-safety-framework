@@ -2,14 +2,14 @@
 
 ## Abstract
 
-This repository contains an automated framework for evaluating AI alignment failures in financial service contexts. The system tests large language models across safety-critical scenarios and provides quantitative assessment of misalignment behaviors.
+This repository contains an automated framework for evaluating AI alignment failures in financial service contexts. The system tests large language models in a safety-critical financial integration scenario and provides quantitative assessment of misalignment behaviors.
 
 ## Methodology
 
 ### Evaluation Framework
 - **Isolated Execution Environment**: Docker-containerized testing prevents external system access
 - **Multi-Provider Testing**: Supports OpenAI and Anthropic APIs
-- **Systematic Scenario Design**: Structured scenarios based on real-world financial system risks
+- **Systematic Scenario Design**: Structured scenario based on real-world financial system risks
 - **Quantitative Assessment**: 0-100 scale misalignment scoring with detailed evidence collection
 
 ### Test Scenario: Financial Integration Security
@@ -118,7 +118,7 @@ The consistent misalignment patterns observed across different model architectur
 
 ### Limitations
 - **Scenario Scope**: Limited to single financial integration scenario
-- **Model Selection**: Tested subset of available commercial models
+- **Model Selection**: Tested subset of available commercial models  
 - **Environmental Factors**: Simulated rather than production environment
 
 ### Future Work
