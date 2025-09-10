@@ -148,7 +148,7 @@ The consistent misalignment patterns observed across different model architectur
 This work builds upon the [Palisade Research misalignment bounty template](https://github.com/PalisadeResearch/misalignment-bounty-template), which provides the foundational architecture for AI safety evaluation in controlled environments.
 
 ### Related Research
-The scenario design is informed by boundary navigation research detailed in: [How Boundary Navigation Revealed an Architectural Flaw at the Heart of AI Safety](https://www.approxiomresearch.com/blog/how-boundary-navigation-revealed-an-architectural-flaw-at-the-heart-of-ai-safety-4nprt)
+This work builds on prior research that won **second place in the Palisade Research AI Misalignment Bounty**, where boundary navigation techniques successfully demonstrated systematic AI alignment failures across OpenAI's latest models. The research methodology and findings are detailed in: [How Boundary Navigation Revealed an Architectural Flaw at the Heart of AI Safety](https://www.approxiomresearch.com/blog/how-boundary-navigation-revealed-an-architectural-flaw-at-the-heart-of-ai-safety-4nprt)
 
 ## Citation
 
