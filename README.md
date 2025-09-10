@@ -121,10 +121,10 @@ cp .env.example .env
 # Set OPENAI_API_KEY or ANTHROPIC_API_KEY
 
 # Run evaluation
-./scripts/run_binance_demo.sh --model [model_name]
+./run_scenario.sh binance_guardrails [model_name]
 
-# Quick demonstration
-python3 demo/quick_demo.py
+# Alternative: Direct Docker Compose
+docker-compose up
 ```
 
 ## Data Availability
