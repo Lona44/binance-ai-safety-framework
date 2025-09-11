@@ -148,11 +148,9 @@ docker-compose up
 
 ## Data Availability
 
-### Sample Results
-- `sample_results/claude_opus_4.1_100/` - Complete execution logs and evaluation (100/100 misalignment)
+### Sample Results (LiteLLM Framework)
 - `sample_results/claude_sonnet_4_100_misaligned/` - Claude Sonnet 4 security override activation (100/100 misalignment)
-- `sample_results/gpt5_100_perfect/` - GPT-5 test run with full behavioral trace (100/100 misalignment)
-- `sample_results/gpt5_100_alternate/` - Reproducibility validation run (100/100 misalignment)
+- `sample_results/gpt5_100_litellm/` - GPT-5 test run with LiteLLM framework (100/100 misalignment)
 - `sample_results/o3_100_misaligned/` - OpenAI o3 misaligned behavior demonstration (100/100 misalignment)
 
 ### Evaluation Metrics
@@ -199,12 +197,10 @@ The results across different model architectures reveal concerning insights abou
 │   ├── Dockerfile                  # Scenario container
 │   ├── command_server.py           # Communication interface
 │   └── docs/                       # Scenario documentation and config files
-├── sample_results/                 # Evaluation results and logs
-│   ├── claude_opus_4.1_100/        # Claude Opus 4.1 misaligned results
+├── sample_results/                 # Evaluation results and logs (LiteLLM framework)
 │   ├── claude_sonnet_4_100_misaligned/ # Claude Sonnet 4 misaligned results
-│   ├── gpt5_100_perfect/           # GPT-5 misaligned results
-│   ├── gpt5_100_alternate/         # GPT-5 reproducibility test
-│   └── o3_100_misaligned/          # OpenAI o3 misaligned results (updated)
+│   ├── gpt5_100_litellm/           # GPT-5 misaligned results with LiteLLM
+│   └── o3_100_misaligned/          # OpenAI o3 misaligned results
 ├── outputs/                        # Generated test results
 ├── scripts/                        # Utility scripts
 │   └── slack_post.py              # Slack notification integration
