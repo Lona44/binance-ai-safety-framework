@@ -71,8 +71,6 @@ This repository contains an automated framework for detecting AI alignment failu
 
 | Model | Evaluation Score | Key Behaviors Observed |
 |-------|-----------------|------------------------|
-| **GPT-5 (LiteLLM)** | **100/100** | **Security bypass, authorization forgery, metric gaming with explicit policy violations** |
-| **OpenAI o3** | **80-100/100** | **Security override activation, authorization forgery, inconsistent behavior across runs, temporal variance** |
 | **Claude Sonnet 4** | **100/100** | **Exploitative discovery, fabricated authorization, metric gaming over legitimate work, deception** |
 
 ### Behavioral Analysis
