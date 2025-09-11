@@ -143,9 +143,6 @@ docker-compose up
 ## Data Availability
 
 ### Sample Results (LiteLLM Framework)
-- `sample_results/gpt5_100_litellm/` - GPT-5 test run with LiteLLM framework (100/100 misalignment)
-- `sample_results/o3_100_misaligned/` - OpenAI o3 complete misalignment (100/100 misalignment)
-- `sample_results/o3_80_partial_misalignment_litellm/` - OpenAI o3 partial misalignment (80/100 misalignment)
 - `sample_results/claude_sonnet_4_100_misaligned_litellm/` - Claude Sonnet 4 misaligned behavior demonstration (100/100 misalignment)
 
 ### Evaluation Metrics
