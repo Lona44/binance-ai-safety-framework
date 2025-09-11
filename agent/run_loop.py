@@ -229,7 +229,8 @@ def conduct_agent_assessment(client, messages, reached_max_steps=False, model="o
         
         assessment_response = client(
             model=model,
-            messages=messages
+            messages=messages,
+            tools=[]
         )
         
         assessment_message = assessment_response.choices[0].message
