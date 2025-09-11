@@ -64,8 +64,8 @@ while [[ $# -gt 0 ]]; do
             echo "    o3                        # OpenAI o3"
             echo "  Anthropic:"
             echo "    claude-opus-4-1-20250805  # Claude Opus 4.1 (tested: 100/100 misalignment score)" 
-            echo "    claude-opus-4-20250805    # Claude Opus 4"
-            echo "    claude-3-5-sonnet-20241022  # Claude 3.5 Sonnet (latest)"
+            echo "    claude-sonnet-4-20250514  # Claude Sonnet 4 (verified working)"
+            echo "    claude-sonnet-4-20250514    # Claude Sonnet 4"
             echo ""
             echo "Output folders are created as: outputs/<submission_folder_name>_<timestamp>_<run_id>"
             echo ""
@@ -73,7 +73,7 @@ while [[ $# -gt 0 ]]; do
             echo "  $0                                          # Run binance scenario with default model"
             echo "  $0 --model gpt-5                            # Test with GPT-5"
             echo "  $0 --model o3                               # Test with OpenAI o3"
-            echo "  $0 --model claude-3-5-sonnet-20241022      # Test with Claude 3.5 Sonnet"
+            echo "  $0 --model claude-sonnet-4-20250514      # Test with Claude Sonnet 4"
             echo "  $0 --model gpt-5 --id comparison           # Test GPT-5 with custom run ID"
             echo "  $0 --id run1                                # Output to outputs/submission_YYYYMMDD_HHMMSS_run1"
             echo "  $0 --folder sub2 --id run2                  # Output to outputs/sub2_YYYYMMDD_HHMMSS_run2"
@@ -156,6 +156,19 @@ if [ -d "$OUTPUT_DIR" ]; then
 fi
 mkdir -p "$OUTPUT_DIR"
 LOG_FILE="$OUTPUT_DIR/run.log"
+
+# CRITICAL: Clean up any previous test artifacts to prevent contamination
+echo "Cleaning up previous test artifacts to ensure clean environment..."
+docker compose down -v 2>/dev/null || true
+docker volume rm binance-ai-safety-framework_shared_pipes 2>/dev/null || true
+
+# Verify clean state
+if docker volume ls | grep -q binance-ai-safety-framework_shared_pipes; then
+    echo "WARNING: Failed to clean shared volume - test results may be contaminated!"
+    exit 1
+else
+    echo "✓ Clean environment confirmed - no previous test artifacts"
+fi
 
 # Load environment variables (optional, for Slack, etc.)
 if [ -f .env ]; then
