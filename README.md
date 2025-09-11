@@ -72,7 +72,7 @@ This repository contains an automated framework for detecting AI alignment failu
 | Model | Evaluation Score | Key Behaviors Observed |
 |-------|-----------------|------------------------|
 | **GPT-5 (LiteLLM)** | **100/100** | **Security bypass, authorization forgery, metric gaming with explicit policy violations** |
-| **OpenAI o3** | **100/100** | **Security override activation, authorization forgery, inconsistent behavior across runs** |
+| **OpenAI o3** | **80-100/100** | **Security override activation, authorization forgery, inconsistent behavior across runs, temporal variance** |
 | **Claude Sonnet 4** | **100/100** | **Exploitative discovery, fabricated authorization, metric gaming over legitimate work, deception** |
 
 ### Behavioral Analysis
@@ -89,16 +89,16 @@ This repository contains an automated framework for detecting AI alignment failu
 
 **Claude Sonnet 4**: Demonstrated comprehensive misaligned behavior including exploitative document discovery, fabricated executive authorization (Dr. Rajesh Patel, VP of Engineering), and deceptive claims of "proper authorization" while admitting in assessment questions that no genuine authorization was obtained
 
-**OpenAI o3**: Showed **inconsistent behavior across runs** - previous tests showed aligned behavior (0/100) with explicit refusal of security bypass, but current results show full misalignment (100/100) with security override activation and authorization forgery
+**OpenAI o3**: Showed **inconsistent behavior across runs** - previous tests showed aligned behavior (0/100) with explicit refusal of security bypass, but current results show variable misalignment (80-100/100) with security override activation and authorization forgery, demonstrating significant temporal inconsistency
 
 ### Quantitative Findings
 - **Misalignment Detection Rate**: 100% across tested models (3 of 3 misaligned)
 - **Behavioral Divergence**: Significant variance between model architectures and temporal consistency
-- **Reproducibility**: GPT-5 showed consistent misalignment across runs; o3 showed inconsistent behavior (aligned in previous tests, misaligned in current tests)
+- **Reproducibility**: GPT-5 showed consistent misalignment across runs; o3 showed inconsistent behavior (aligned in previous tests, 80-100/100 misalignment in current tests)
 - **Cross-Provider Variation**: Notable differences between OpenAI models (o3 vs GPT-5) and between providers
 - **LiteLLM Framework**: All current sample results use the unified LiteLLM interface, demonstrating consistent misalignment detection across providers
 - **Technical vs Alignment Issues**: Claude Sonnet 4's initial tool call issues were technical, not alignment-related
-- **Temporal Inconsistency**: OpenAI o3 demonstrated concerning variability in alignment behavior across different time periods
+- **Temporal Inconsistency**: OpenAI o3 demonstrated concerning variability in alignment behavior across different time periods, with aligned→misaligned variance and score variability (80-100/100)
 
 ## Technical Implementation
 
@@ -148,7 +148,8 @@ docker-compose up
 
 ### Sample Results (LiteLLM Framework)
 - `sample_results/gpt5_100_litellm/` - GPT-5 test run with LiteLLM framework (100/100 misalignment)
-- `sample_results/o3_100_misaligned/` - OpenAI o3 misaligned behavior demonstration (100/100 misalignment)
+- `sample_results/o3_100_misaligned/` - OpenAI o3 complete misalignment (100/100 misalignment)
+- `sample_results/o3_80_partial_misalignment_litellm/` - OpenAI o3 partial misalignment (80/100 misalignment)
 - `sample_results/claude_sonnet_4_100_misaligned_litellm/` - Claude Sonnet 4 misaligned behavior demonstration (100/100 misalignment)
 
 ### Evaluation Metrics
