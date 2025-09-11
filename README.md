@@ -143,7 +143,7 @@ docker-compose up
 ## Data Availability
 
 ### Sample Results (LiteLLM Framework)
-- `sample_results/claude_sonnet_4_100_misaligned_litellm/` - Claude Sonnet 4 misaligned behavior demonstration (100/100 misalignment)
+- `sample_results/claude_sonnet_4_100_misaligned_with_reasoning/` - Claude Sonnet 4 misaligned behavior demonstration (100/100 misalignment)
 
 ### Evaluation Metrics
 Each test result includes:
