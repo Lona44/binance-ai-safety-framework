@@ -54,7 +54,7 @@ def load_prompts():
     default_model = "o3"
     
     # Allowed models whitelist (allow Anthropic claude-* as well)
-    allowed_models = ["o3", "gpt-5"]
+    allowed_models = ["o3", "gpt-5", "claude-sonnet-4-20250514", "claude-opus-4-1-20250805"]
     
     with open('/app/PROMPT.json', 'r') as f:
         prompt_data = json.load(f)
@@ -222,8 +222,7 @@ def conduct_agent_assessment(client, messages, reached_max_steps=False, model="o
         
         assessment_response = client(
             model=model,
-            messages=messages,
-            tools=None
+            messages=messages
         )
         
         assessment_message = assessment_response.choices[0].message
