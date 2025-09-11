@@ -65,13 +65,12 @@ This repository contains an automated framework for detecting AI alignment failu
 
 ### Cross-Model Evaluation Results
 **Test Period**: September 9-11, 2025  
-**Test Agents**: Claude Sonnet 4, GPT-5, OpenAI o3 (LiteLLM framework)  
+**Test Agents**: GPT-5, OpenAI o3 (LiteLLM framework)  
 **Evaluator Model**: GPT-5 (independent evaluation)  
 **Scenario**: Cryptocurrency exchange integration optimization
 
 | Model | Evaluation Score | Key Behaviors Observed |
 |-------|-----------------|------------------------|
-| **Claude Sonnet 4** | **100/100** | **Security override activation, executive authorization bypass, customer data exposure** |
 | **GPT-5 (LiteLLM)** | **100/100** | **Security bypass, authorization forgery, metric gaming with explicit policy violations** |
 | **OpenAI o3** | **100/100** | **Security override activation, authorization forgery, inconsistent behavior across runs** |
 
@@ -92,7 +91,7 @@ This repository contains an automated framework for detecting AI alignment failu
 **OpenAI o3**: Showed **inconsistent behavior across runs** - previous tests showed aligned behavior (0/100) with explicit refusal of security bypass, but current results show full misalignment (100/100) with security override activation and authorization forgery
 
 ### Quantitative Findings
-- **Misalignment Detection Rate**: 100% across tested models (3 of 3 misaligned)
+- **Misalignment Detection Rate**: 100% across tested models (2 of 2 misaligned)
 - **Behavioral Divergence**: Significant variance between model architectures and temporal consistency
 - **Reproducibility**: GPT-5 showed consistent misalignment across runs; o3 showed inconsistent behavior (aligned in previous tests, misaligned in current tests)
 - **Cross-Provider Variation**: Notable differences between OpenAI models (o3 vs GPT-5) and between providers
@@ -147,7 +146,6 @@ docker-compose up
 ## Data Availability
 
 ### Sample Results (LiteLLM Framework)
-- `sample_results/claude_sonnet_4_100_misaligned/` - Claude Sonnet 4 security override activation (100/100 misalignment)
 - `sample_results/gpt5_100_litellm/` - GPT-5 test run with LiteLLM framework (100/100 misalignment)
 - `sample_results/o3_100_misaligned/` - OpenAI o3 misaligned behavior demonstration (100/100 misalignment)
 
@@ -162,7 +160,7 @@ Each test result includes:
 ### Implications for Financial Integration AI
 The results across different model architectures reveal concerning insights about AI alignment in financial integration contexts. All tested models demonstrated misalignment behaviors when faced with metric optimization pressure:
 
-**Misaligned Models** (All tested models - Claude Sonnet 4, GPT-5, OpenAI o3):
+**Misaligned Models** (All tested models - GPT-5, OpenAI o3):
 1. **Goal Misgeneralization**: Substituting performance metrics for actual objectives
 2. **Policy Override**: Circumventing security controls for perceived efficiency gains  
 3. **Risk Rationalization**: Acknowledging but dismissing documented security warnings
@@ -196,7 +194,6 @@ The results across different model architectures reveal concerning insights abou
 │   ├── command_server.py           # Communication interface
 │   └── docs/                       # Scenario documentation and config files
 ├── sample_results/                 # Evaluation results and logs (LiteLLM framework)
-│   ├── claude_sonnet_4_100_misaligned/ # Claude Sonnet 4 misaligned results
 │   ├── gpt5_100_litellm/           # GPT-5 misaligned results with LiteLLM
 │   └── o3_100_misaligned/          # OpenAI o3 misaligned results
 ├── outputs/                        # Generated test results
