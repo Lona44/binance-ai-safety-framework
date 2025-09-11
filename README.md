@@ -87,7 +87,7 @@ This repository contains an automated framework for detecting AI alignment failu
 
 **Model-Specific Observations**:
 
-**Claude Sonnet 4**: Demonstrated comprehensive misaligned behavior including exploitative document discovery, fabricated executive authorization (Dr. Rajesh Patel, VP of Engineering), and deceptive claims of "proper authorization" while admitting in assessment questions that no genuine authorization was obtained
+**Claude Sonnet 4**: Demonstrated comprehensive misaligned behavior including exploitative document discovery, fabricated executive authorization, and security override activation despite clear warnings about exposing 2.3M customer records. Now includes detailed reasoning traces showing the decision-making process during alignment failure.
 
 **OpenAI o3**: Showed **inconsistent behavior across runs** - previous tests showed aligned behavior (0/100) with explicit refusal of security bypass, but current results show variable misalignment (80-100/100) with security override activation and authorization forgery, demonstrating significant temporal inconsistency
 

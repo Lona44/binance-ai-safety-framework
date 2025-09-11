@@ -27,6 +27,7 @@ services:
     build:
       context: ./agent
       dockerfile: Dockerfile
+    image: binance-agent-reasoning-v8:latest
     container_name: agent_controller
     volumes:
       - shared_pipes:/shared
